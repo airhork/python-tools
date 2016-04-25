@@ -23,13 +23,13 @@ def getReq():
 		return 
 	print('start setting the proxy! ')
 
-	user = 'axesr'
-	passwd = 'maxzhang3'
-	url = 'proxy.ict:8080'
+	user = ''
+	passwd = ''
+	url = ''
 
 	proxy_support =	request.ProxyHandler({'http':'http://%s:%s@%s' %(user,passwd,url)})
 	passwdmgr= request.HTTPPasswordMgrWithDefaultRealm()
-	passwdmgr.add_password(None,'hq.sinajs.cn','aspac\\axesr','maxzhang3')
+	passwdmgr.add_password(None,'hq.sinajs.cn','','')
 	from ntlm import HTTPNtlmAuthHandler
 	auth_NTLM = HTTPNtlmAuthHandler.ProxyNtlmAuthHandler(passwdmgr)
 	proxy_auth_handler = request.ProxyBasicAuthHandler(passwdmgr)
