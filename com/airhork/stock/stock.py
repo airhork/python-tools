@@ -1,4 +1,6 @@
 """Calculate the new cost of the stock
+
+   use the sina's web site to retrieve the info
    
 """
 commission = 0.0004
