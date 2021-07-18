@@ -33,10 +33,17 @@ p2020Jan = PolicyValue()
 p2020Jan.maxAgaR = 24633
 p2020Jan.maxHouse = 3448
 
+p2021Jul = PolicyValue()
+p2021Jul.maxAgaR = 31014
+p2021Jul.maxHouse = 4342
+
 
 basicDic2020 = {'Jan': p2020Jan, 'Jul':p2020Jul}
 
-basicDic2021 = {'Jan' : p2020Jul}
+# basicDic2021 = {'Jan' : p2020Jul}
+basicDic2021 = {'Jan' : p2020Jul, 'Jul': p2021Jul}
+
+basicDicMap = {2020 : basicDic2020, 2021 : basicDic2021}
 
 
 
@@ -95,7 +102,7 @@ def getBase(base, maxAgaR, maxHouse) :
         
         
 
-def cal(base, increase = 1, comp = 5000, bonusRate = 1, year=2020):
+def cal(base, increase = 1, bonusRate = 0.15, year=2020, comp = 5000):
         
         beforeTax = 0
 
@@ -124,7 +131,7 @@ def cal(base, increase = 1, comp = 5000, bonusRate = 1, year=2020):
                         print('before tax %s' %(beforeTax))
                         ref = reduction(beforeTax, 5000, comp)
                 
-                basicDic = basicDic2020 if year == 2020 else basicDic2021
+                basicDic = basicDicMap[year]
 
 
                 if item in basicDic: 
@@ -183,6 +190,7 @@ def cal(base, increase = 1, comp = 5000, bonusRate = 1, year=2020):
         print('total base salary %.2f, total package %.2f with bonus %.2f ' %(totalSalary, totalSalary + bonus, bonus))
         print('You after tax base is %.2f' %(handSum))
         print('You after tax bonus is %.2f' %(bonusTax))
+        print('Apr total income is %.2f' %(result['Apr'] + bonusTax))
         print('You after tax total package is %.2f' %(handSum + bonusTax))
 
 
