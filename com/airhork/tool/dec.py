@@ -102,7 +102,7 @@ def getBase(base, maxAgaR, maxHouse) :
         
         
 
-def cal(base, increase = 1, bonusRate = 0.15, year=2020, comp = 5000):
+def cal(base, increase = 1, bonusRate = 0.1, year=2020, comp = 5000):
         
         beforeTax = 0
 
