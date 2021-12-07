@@ -33,6 +33,46 @@ def batchCreatingUser(begin, end):
 	
 
 
+def analysisQL():
+    import json
+
+    result = {}
+    nameresult = {}
+
+    with open("e:\\project\\advent\\query_list_23.json") as fp:
+        lines = fp.readlines()
+        for line in lines:
+            item = json.loads(line)
+            if item['filterGroups'] is not None:
+                print(item['id'])
+                i = 0
+                for filterGroup in item['filterGroups']:
+                    filters = []
+                    bindings = {}
+                    itemresult = []
+                    for filter in filterGroup['filterBindings'] :
+                        filters.append(filter['filterParam'])
+                        bindings[filter['filterParam']] = filter
+
+                    filters.sort()
+                    for fi in filters :
+                        itemresult.append(fi)
+                        itemresult.append(bindings[fi]['operator'])
+                        itemresult.append(bindings[fi]['value'])
+                    result['%s_%s' %(item['id'], i)] = ('_'.join(itemresult))
+                    nameresult['%s_%s' %(item['id'], i)] = item['name']
+                    i = i + 1
+
+    tt = result.values()
+    print('size of list %d' %(len(tt)))
+    print('size of set %d' %(len(set(tt))))
+
+    f = open('e:\\r_23.csv','w')
+    for x in result:
+        f.write('%s,%s,%s \n' %(x, nameresult[x], result[x].replace(',','.')))
+    f.close()
+
+            
 
 	
 
